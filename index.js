@@ -100,7 +100,11 @@ app.get("/womens", (request, response) => {
 // Extra credit: modify the /item/0 route handler to have dynamic path parameter and return any item's data
 app.get("/item/:num", (request, response) => {
   const num = request.params.num
-  response.render("product.ejs", inventory[0].items[num])
+  if (num < 3) {
+    response.render("product.ejs", inventory[0].items[num])
+  } else if (num >= 3) {
+    response.render("product.ejs", inventory[1].items[num-3])
+  }
 })
 
 
